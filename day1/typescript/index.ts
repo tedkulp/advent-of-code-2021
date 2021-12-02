@@ -1,7 +1,7 @@
 import { promises } from "fs";
 
 (async () => {
-  const dataList = (await promises.readFile("./data.txt"))
+  const dataList = (await promises.readFile("../data.txt"))
     .toString()
     .split("\n")
     .map((line) => parseInt(line));
