@@ -1,7 +1,7 @@
 import { promises } from "fs";
 
 (async () => {
-  const dataList: [string, number][] = (await promises.readFile("../data.txt"))
+  const dataList: [string, number][] = (await promises.readFile("./day2/data.txt"))
     .toString()
     .split("\n")
     .map((line) => {
