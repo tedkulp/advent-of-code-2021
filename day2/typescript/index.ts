@@ -1,9 +1,11 @@
-import { promises } from "fs";
+import { promises } from 'fs';
 
 (async () => {
-  const dataList: [string, number][] = (await promises.readFile("./day2/data.txt"))
+  const dataList: [string, number][] = (
+    await promises.readFile('./day2/data.txt')
+  )
     .toString()
-    .split("\n")
+    .split('\n')
     .map((line) => {
       const [dir, dist] = line.split(' ');
       return [dir, parseInt(dist)];
@@ -12,41 +14,40 @@ import { promises } from "fs";
   let hpos = 0;
   let dpos = 0;
 
-  dataList.forEach(([dir, dist], idx) => {
-    switch(dir) {
-      case "forward":
+  dataList.forEach(([dir, dist], _idx) => {
+    switch (dir) {
+      case 'forward':
         hpos += dist;
         break;
-      case "up":
+      case 'up':
         dpos -= dist;
         break;
-      case "down":
+      case 'down':
         dpos += dist;
         break;
     }
   });
 
-  console.log("Answer #1:", hpos * dpos);
+  console.log('Answer #1:', hpos * dpos);
 
   let aim = 0;
   hpos = 0;
   dpos = 0;
 
-  dataList.forEach(([dir, dist], idx) => {
-    switch(dir) {
-      case "forward":
+  dataList.forEach(([dir, dist], _idx) => {
+    switch (dir) {
+      case 'forward':
         hpos += dist;
         dpos += aim * dist;
         break;
-      case "up":
+      case 'up':
         aim -= dist;
         break;
-      case "down":
+      case 'down':
         aim += dist;
         break;
     }
   });
 
-  console.log("Answer #2:", hpos * dpos);
-
+  console.log('Answer #2:', hpos * dpos);
 })();

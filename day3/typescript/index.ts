@@ -1,4 +1,4 @@
-import { promises } from "fs";
+import { promises } from 'fs';
 
 const BIT_LENGTH = 12;
 
@@ -37,11 +37,11 @@ function getRating<T extends number>(list: T[], mostUsed = true) {
 }
 
 (async () => {
-  let bitStats: BitStats[] = [];
+  const bitStats: BitStats[] = [];
 
-  const dataList = (await promises.readFile("./day3/data.txt"))
+  const dataList = (await promises.readFile('./day3/data.txt'))
     .toString()
-    .split("\n")
+    .split('\n')
     .map((line) => parseInt(line, 2));
 
   for (let i = 0; i < BIT_LENGTH; i++) {
@@ -62,8 +62,8 @@ function getRating<T extends number>(list: T[], mostUsed = true) {
 
   console.log(`Answer #1: ${gamma * epsilon}`);
 
-  let oxyRating = getRating(dataList, true);
-  let co2Rating = getRating(dataList, false);
+  const oxyRating = getRating(dataList, true);
+  const co2Rating = getRating(dataList, false);
 
   console.log(`Answer #2: ${oxyRating * co2Rating}`);
 })();

@@ -1,10 +1,9 @@
-import { promises } from "fs";
-import {cwd } from 'process';
+import { promises } from 'fs';
 
 (async () => {
-  const dataList = (await promises.readFile("./day1/data.txt"))
+  const dataList = (await promises.readFile('./day1/data.txt'))
     .toString()
-    .split("\n")
+    .split('\n')
     .map((line) => parseInt(line));
 
   const answerAList = dataList
@@ -18,7 +17,7 @@ import {cwd } from 'process';
     })
     .filter((i) => i > -1);
 
-  console.log("#1 Answer", answerAList.length);
+  console.log('#1 Answer', answerAList.length);
 
   const rollingSumList = dataList
     .map((_, idx) => {
@@ -39,5 +38,5 @@ import {cwd } from 'process';
     })
     .filter((i) => i);
 
-  console.log("#2 Answer", answerBList.length);
+  console.log('#2 Answer', answerBList.length);
 })();

@@ -1,8 +1,9 @@
-import { promises } from "fs";
-import { chunk, cloneDeep, zip } from "lodash";
+import { promises } from 'fs';
+import { chunk, cloneDeep, zip } from 'lodash';
 
 class Board {
   boardPos: boolean[][];
+
   numbers: number[][];
 
   constructor(numbers: number[][]) {
@@ -50,24 +51,22 @@ class Board {
 (async () => {
   let boards: Board[] = [];
 
-  const dataList = (await promises.readFile("./day4/data.txt"))
+  const dataList = (await promises.readFile('./day4/data.txt'))
     .toString()
-    .split("\n")
+    .split('\n')
     .filter((n) => !!n);
 
-  const numbersToPick = dataList[0].split(",").map((n) => parseInt(n));
-  const bingoCards = chunk(dataList.slice(1), 5).map((e) => {
-    return e.map((f) =>
+  const numbersToPick = dataList[0].split(',').map((n) => parseInt(n, 10));
+  const bingoCards = chunk(dataList.slice(1), 5).map((e) =>
+    e.map((f) =>
       f
         .trim()
         .split(/ +/)
-        .map((i) => parseInt(i)),
-    );
-  });
+        .map((i) => parseInt(i, 10)),
+    ),
+  );
 
-  boards = bingoCards.map((b) => {
-    return new Board(b);
-  });
+  boards = bingoCards.map((b) => new Board(b));
 
   const firstBoard = {
     board: new Board([]),
@@ -97,7 +96,6 @@ class Board {
           lastBoard.num = num;
         }
         boards = boards.filter((_, idx) => idx !== boardIdx);
-        continue;
       }
     }
   }
